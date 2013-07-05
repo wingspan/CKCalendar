@@ -76,7 +76,10 @@
 @implementation DateButton
 
 - (void)setDate:(NSDate *)date {
+    NSParameterAssert(date);
+    
     _date = date;
+    
     NSDateComponents *comps = [self.calendar components:NSDayCalendarUnit|NSMonthCalendarUnit fromDate:date];
     [self setTitle:[NSString stringWithFormat:@"%d", comps.day] forState:UIControlStateNormal];
 }
@@ -271,7 +274,6 @@
     }
 
     for (DateButton *dateButton in self.dateButtons) {
-        dateButton.date = nil;
         [dateButton removeFromSuperview];
     }
 
